@@ -1,3 +1,6 @@
+scene.onOverlapTile(SpriteKind.Player, sprites.swamp.swampTile1, function (sprite, location) {
+    info.changeLifeBy(-1)
+})
 let mySprite = sprites.create(img`
     . . . . . . . . . . b 5 b . . . 
     . . . . . . . . . b 5 b . . . . 
@@ -19,3 +22,5 @@ let mySprite = sprites.create(img`
 controller.moveSprite(mySprite, 100, 100)
 mySprite.ay = 200
 scene.cameraFollowSprite(mySprite)
+tiles.setTilemap(tilemap`level1`)
+info.setLife(3)
