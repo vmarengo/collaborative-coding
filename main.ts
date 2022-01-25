@@ -1,3 +1,8 @@
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (mySprite.vy == 0) {
+        mySprite.vy = -150
+    }
+})
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sprite, location) {
     game.over(false)
 })
@@ -10,7 +15,8 @@ scene.onOverlapTile(SpriteKind.Player, tiles.util.object0, function (sprite, loc
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLarge, function (sprite, location) {
     game.over(true)
 })
-let mySprite = sprites.create(img`
+let mySprite: Sprite = null
+mySprite = sprites.create(img`
     . . . . . . . . . . b 5 b . . . 
     . . . . . . . . . b 5 b . . . . 
     . . . . . . b b b b b b . . . . 
@@ -28,8 +34,8 @@ let mySprite = sprites.create(img`
     b b c c c d d d d 5 5 5 b b . . 
     . . . c c c c c c c c b b . . . 
     `, SpriteKind.Player)
-controller.moveSprite(mySprite, 100, 100)
-mySprite.ay = 200
+controller.moveSprite(mySprite, 100, 0)
+mySprite.ay = 350
 scene.cameraFollowSprite(mySprite)
 tiles.setTilemap(tilemap`level1`)
 info.setLife(3)
