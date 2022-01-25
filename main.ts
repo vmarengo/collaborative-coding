@@ -1,5 +1,14 @@
-scene.onOverlapTile(SpriteKind.Player, sprites.swamp.swampTile1, function (sprite, location) {
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sprite, location) {
+    game.over(false)
+})
+scene.onOverlapTile(SpriteKind.Player, tiles.util.object4, function (sprite, location) {
     info.changeLifeBy(-1)
+})
+scene.onOverlapTile(SpriteKind.Player, tiles.util.object0, function (sprite, location) {
+    info.changeLifeBy(1)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLarge, function (sprite, location) {
+    game.over(true)
 })
 let mySprite = sprites.create(img`
     . . . . . . . . . . b 5 b . . . 
