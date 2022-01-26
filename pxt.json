@@ -5,7 +5,11 @@
         "device": "*",
         "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.4.1",
         "tilemaps": "github:microsoft/pxt-tilemaps#v1.12.0",
-        "controller": "*"
+        "controller": "*",
+        "animation": "*",
+        "corgio": "*",
+        "arcade-background-scroll": "github:microsoft/arcade-background-scroll#926e12eefffd09d453c7cde73f8d6ebd0e666d9d",
+        "pxt-button-combos": "github:jwunderl/pxt-button-combos#v0.0.24"
     },
     "files": [
         "main.blocks",
