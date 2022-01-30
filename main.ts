@@ -1,9 +1,10 @@
 scene.onOverlapTile(SpriteKind.Player, tiles.util.object2, function (sprite, location) {
-    info.changeLifeBy(1)
+    info.changeScoreBy(50)
+    statusbar.value += 150
     tiles.replaceAllTiles(tiles.util.object2, assets.tile`transparency16`)
 })
 scene.onOverlapTile(SpriteKind.Player, tiles.util.object14, function (sprite, location) {
-    info.changeLifeBy(-1)
+    statusbar.value += -100
     tiles.replaceAllTiles(tiles.util.object14, assets.tile`transparency16`)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -15,11 +16,11 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sp
     game.over(false)
 })
 scene.onOverlapTile(SpriteKind.Player, tiles.util.object6, function (sprite, location) {
-    info.changeLifeBy(-1)
+    statusbar.value += -50
     tiles.replaceAllTiles(tiles.util.object6, assets.tile`transparency16`)
 })
 scene.onOverlapTile(SpriteKind.Player, tiles.util.object4, function (sprite, location) {
-    info.changeLifeBy(-1)
+    statusbar.value += -50
     tiles.replaceAllTiles(tiles.util.object4, assets.tile`transparency16`)
 })
 function characterSelect () {
@@ -74,19 +75,26 @@ function characterSelect () {
             `, SpriteKind.Player)
     }
 }
+function statusBar (HP: string) {
+    statusbar = statusbars.create(20, 4, StatusBarKind.Health)
+    statusbar.positionDirection(CollisionDirection.Top)
+    statusbar.value = 200
+    statusbar.setColor(7, 2)
+    statusbar.setLabel("HP")
+}
 function player1 () {
     controller.moveSprite(player_1, 100, 0)
     player_1.ay = 350
     scene.cameraFollowSprite(player_1)
     tiles.setTilemap(tilemap`level1`)
-    info.setLife(3)
 }
 scene.onOverlapTile(SpriteKind.Player, tiles.util.object12, function (sprite, location) {
-    info.changeLifeBy(-1)
+    statusbar.value += -50
     tiles.replaceAllTiles(tiles.util.object12, assets.tile`transparency16`)
 })
 scene.onOverlapTile(SpriteKind.Player, tiles.util.object0, function (sprite, location) {
-    info.changeLifeBy(1)
+    info.changeScoreBy(50)
+    statusbar.value += 50
     tiles.replaceAllTiles(tiles.util.object0, assets.tile`transparency16`)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLarge, function (sprite, location) {
@@ -94,5 +102,11 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLarge, function (spr
 })
 let characterSelection = false
 let player_1: Sprite = null
+let statusbar: StatusBarSprite = null
 characterSelect()
 player1()
+statusBar("HP")
+info.setScore(0)
+while (info.score() == 100) {
+    statusbar.value = 200
+}
