@@ -1,11 +1,16 @@
-scene.onOverlapTile(SpriteKind.Player, tiles.util.object2, function (sprite, location) {
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, location) {
+    statusbar.value += -50
+    tiles.replaceAllTiles(assets.tile`myTile0`, assets.tile`transparency16`)
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
+    info.changeScoreBy(50)
+    statusbar.value += 50
+    tiles.replaceAllTiles(assets.tile`myTile1`, assets.tile`transparency16`)
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
     info.changeScoreBy(50)
     statusbar.value += 150
-    tiles.replaceAllTiles(tiles.util.object2, assets.tile`transparency16`)
-})
-scene.onOverlapTile(SpriteKind.Player, tiles.util.object14, function (sprite, location) {
-    statusbar.value += -100
-    tiles.replaceAllTiles(tiles.util.object14, assets.tile`transparency16`)
+    tiles.replaceAllTiles(assets.tile`myTile`, assets.tile`transparency16`)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (player_1.vy == 0) {
@@ -15,13 +20,13 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sprite, location) {
     game.over(false)
 })
-scene.onOverlapTile(SpriteKind.Player, tiles.util.object6, function (sprite, location) {
-    statusbar.value += -50
-    tiles.replaceAllTiles(tiles.util.object6, assets.tile`transparency16`)
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile4`, function (sprite, location) {
+    statusbar.value += -100
+    tiles.replaceAllTiles(assets.tile`myTile4`, assets.tile`transparency16`)
 })
-scene.onOverlapTile(SpriteKind.Player, tiles.util.object4, function (sprite, location) {
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile3`, function (sprite, location) {
     statusbar.value += -50
-    tiles.replaceAllTiles(tiles.util.object4, assets.tile`transparency16`)
+    tiles.replaceAllTiles(assets.tile`myTile3`, assets.tile`transparency16`)
 })
 function characterSelect () {
     game.splash("choose your character!")
@@ -82,20 +87,18 @@ function statusBar (HP: string) {
     statusbar.setColor(7, 2)
     statusbar.setLabel("HP")
 }
+statusbars.onZero(StatusBarKind.Health, function (status) {
+    game.over(false)
+})
 function player1 () {
     controller.moveSprite(player_1, 100, 0)
     player_1.ay = 350
     scene.cameraFollowSprite(player_1)
     tiles.setTilemap(tilemap`level1`)
 }
-scene.onOverlapTile(SpriteKind.Player, tiles.util.object12, function (sprite, location) {
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, location) {
     statusbar.value += -50
-    tiles.replaceAllTiles(tiles.util.object12, assets.tile`transparency16`)
-})
-scene.onOverlapTile(SpriteKind.Player, tiles.util.object0, function (sprite, location) {
-    info.changeScoreBy(50)
-    statusbar.value += 50
-    tiles.replaceAllTiles(tiles.util.object0, assets.tile`transparency16`)
+    tiles.replaceAllTiles(assets.tile`myTile2`, assets.tile`transparency16`)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLarge, function (sprite, location) {
     game.over(true)
